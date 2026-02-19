@@ -1,4 +1,6 @@
-/* Contenedor principal */
+/* =========================================
+   CONTENEDOR PRINCIPAL Y TÍTULO
+   ========================================= */
 .contact-container {
   padding: 3rem 1rem;
   max-width: 1100px;
@@ -17,49 +19,48 @@
   text-align: center;
 }
 
-/* Layout de 2 columnas (Imagen | Formulario) */
+/* Layout de 2 columnas (Imagen a la izquierda | Formulario a la derecha) */
 .content-wrapper {
   display: flex;
-  flex-wrap: wrap; /* Se adapta a celulares (baja uno debajo del otro) */
+  flex-wrap: wrap; 
   gap: 4rem;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
 
-/* IMAGEN */
+/* =========================================
+   IMAGEN (Solución del tamaño y movimiento)
+   ========================================= */
 .image-section {
   flex: 1;
   min-width: 300px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .moai-contact {
+  /* AQUÍ ESTÁ EL ARREGLO DEL TAMAÑO */
   width: 100%;
-  max-width: 400px;
+  max-width: 350px; /* Evita que se vuelva gigante */
+  height: auto;
+  object-fit: contain; /* Evita que se recorte o estire feo */
   border-radius: 20px;
-  /* Sombra azul brillante */
-  box-shadow: 0 20px 40px rgba(42, 77, 143, 0.2); 
-  object-fit: cover;
+  filter: drop-shadow(0 15px 30px rgba(42, 77, 143, 0.2)); /* Sombra elegante sin fondo blanco */
 }
 
-/* FORMULARIO */
+/* =========================================
+   FORMULARIO BASE
+   ========================================= */
 .form-section {
   flex: 1;
   min-width: 300px;
   background: white;
   padding: 2.5rem;
   border-radius: 25px;
-  /* Sombra suave para que flote sobre el fondo */
   box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
   border: 1px solid #f0f0f0;
-}
-
-.form-title {
-  color: #2a4d8f;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
 }
 
 .form-group {
@@ -78,29 +79,28 @@ label {
 input, textarea {
   width: 100%;
   padding: 15px;
-  border: 2px solid #e0e0e0; /* Borde gris suave por defecto */
+  border: 2px solid #e0e0e0;
   border-radius: 12px;
-  font-family: 'Poppins', sans-serif; /* Tu fuente moderna */
+  font-family: 'Poppins', sans-serif; 
   font-size: 1rem;
-  transition: all 0.3s ease; /* Transición suave */
+  transition: all 0.3s ease; 
   background-color: #f9f9f9;
 }
 
 /* EFECTO FOCUS (El brillo azul al escribir) */
 input:focus, textarea:focus {
-  border-color: #2a4d8f; /* Se pone azul */
+  border-color: #2a4d8f;
   background-color: white;
-  /* Resplandor azul alrededor */
   box-shadow: 0 0 0 4px rgba(42, 77, 143, 0.1); 
   outline: none;
-  transform: translateY(-2px); /* Se levanta un poquito */
+  transform: translateY(-2px);
 }
 
 /* BOTÓN ENVIAR */
 .btn-enviar {
   width: 100%;
   padding: 15px;
-  background-color: #2a4d8f; /* Azul Papu */
+  background-color: #2a4d8f; 
   color: white;
   border: none;
   border-radius: 12px;
@@ -111,16 +111,105 @@ input:focus, textarea:focus {
   box-shadow: 0 10px 20px rgba(42, 77, 143, 0.2);
 }
 
-/* Efecto hover del botón */
-.btn-enviar:hover {
-  background-color: #1e3a6e; /* Azul más oscuro */
-  transform: translateY(-3px); /* Se levanta */
-  box-shadow: 0 15px 30px rgba(42, 77, 143, 0.4); /* Sombra más grande */
+.btn-enviar:hover:not(:disabled) {
+  background-color: #1e3a6e;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(42, 77, 143, 0.4); 
 }
 
-/* ANIMACIONES */
+/* =========================================
+   NUEVAS MEJORAS DEL FORMULARIO PROFESIONAL
+   ========================================= */
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.half-width {
+  flex: 1; 
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* Estilo del Select (Menú desplegable) */
+.select-papu {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #555;
+  cursor: pointer;
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a4d8f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.select-papu:focus {
+  border-color: #2a4d8f;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(42, 77, 143, 0.1);
+  outline: none;
+}
+
+/* Validaciones Visuales de Angular */
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched, 
+select.ng-invalid.ng-touched {
+  border-color: #ff4d4f; 
+}
+
+input.ng-valid.ng-touched, 
+textarea.ng-valid.ng-touched, 
+select.ng-valid.ng-touched {
+  border-color: #52c41a; 
+}
+
+/* Botón Deshabilitado */
+.btn-enviar:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Tarjeta de Mensaje de Éxito */
+.alerta-exito {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.icono-exito {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.alerta-exito h3 {
+  color: #52c41a;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   ANIMACIONES (FLOTAR Y ENTRADAS)
+   ========================================= */
 .floating {
-  animation: float 5s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -131,6 +220,8 @@ input:focus, textarea:focus {
 
 .fade-in-left { animation: fadeInLeft 1s ease-out; }
 .fade-in-right { animation: fadeInRight 1s ease-out; }
+.fade-in-down { animation: fadeInDown 1s ease-out; }
+.fade-in-up { animation: fadeInUp 0.5s ease-out; }
 
 @keyframes fadeInLeft {
   from { opacity: 0; transform: translateX(-50px); }
@@ -140,4 +231,14 @@ input:focus, textarea:focus {
 @keyframes fadeInRight {
   from { opacity: 0; transform: translateX(50px); }
   to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }

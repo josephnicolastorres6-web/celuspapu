@@ -1,8 +1,13 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL Y TÍTULO
+   ========================================= */
 .products-container {
   padding: 3rem 1rem;
-  max-width: 1300px; /* Un poco más ancho para que quepan bien */
+  max-width: 1300px;
   margin: 0 auto;
   text-align: center;
+  /* Espacio extra abajo para que el carrito flotante no tape nada */
+  padding-bottom: 100px; 
 }
 
 .section-title {
@@ -12,7 +17,7 @@
   margin-bottom: 3rem;
 }
 
-/* GRID: 4 columnas en pantallas grandes, se adapta en pequeñas */
+/* GRID: Cuadrícula de productos */
 .grid-productos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -20,50 +25,66 @@
   padding: 1rem;
 }
 
-/* TARJETA */
+/* =========================================
+   ESTILO DE LA TARJETA (CARD)
+   ========================================= */
 .card-producto {
   background: white;
-  border-radius: 25px; /* Bordes bien redondos */
+  border-radius: 25px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra elegante */
-  transition: all 0.4s ease; /* Para el movimiento suave */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
   border: 1px solid rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
 }
 
-/* HOVER: El efecto de movimiento que pediste */
+/* MOVIMIENTO DE LA TARJETA ENTERA AL HOVER */
 .card-producto:hover {
   transform: translateY(-15px); /* Flota hacia arriba */
-  box-shadow: 0 25px 50px rgba(42, 77, 143, 0.25); /* Sombra azul al flotar */
+  box-shadow: 0 25px 50px rgba(42, 77, 143, 0.25); /* Sombra azul */
 }
 
-/* IMAGEN SUPERIOR */
+/* =========================================
+   ¡AQUÍ ESTÁ EL ARREGLO DE LAS IMÁGENES! 🔧
+   ========================================= */
 .card-header {
-  background: radial-gradient(circle, #f0f4ff 0%, #eef2ff 100%);
-  padding: 2rem;
+  background: radial-gradient(circle at center, #f0f4ff 0%, #eef2ff 100%);
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #f5f7fa;
+  height: 220px; /* Altura fija para el encabezado */
+  overflow: hidden; /* Evita que se salga si la animación es muy brusca */
 }
 
 .card-img {
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
-  transition: transform 0.3s ease;
+  /* TAMAÑO CONTROLADO */
+  width: auto;
+  height: 100%; /* Ocupa el alto disponible */
+  max-height: 160px; /* PERO NUNCA MÁS DE 160PX. Esto evita que sean gigantes. */
+  object-fit: contain; /* Asegura que la imagen no se recorte ni deforme */
+  
+  /* SOMBRA Y TRANSICIÓN PARA EL MOVIMIENTO */
+  filter: drop-shadow(0 8px 15px rgba(42, 77, 143, 0.2));
+  /* Transición "rebotante" para más versatilidad */
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); 
 }
 
+/* MOVIMIENTO DE LA IMAGEN AL HOVER */
 .card-producto:hover .card-img {
-  transform: scale(1.1) rotate(3deg); /* Movimiento divertido al pasar el mouse */
+  /* Crece, rota un poquito y sube. ¡Efecto 3D! */
+  transform: scale(1.15) rotate(-3deg) translateY(-10px); 
+  filter: drop-shadow(0 15px 30px rgba(42, 77, 143, 0.3));
 }
 
-/* CUERPO DE LA TARJETA */
+/* =========================================
+   CUERPO DE LA TARJETA Y LISTAS
+   ========================================= */
 .card-body {
   padding: 1.5rem;
-  text-align: left; /* Alineado a la izquierda como en tu foto */
+  text-align: left;
 }
 
 .marca {
@@ -76,75 +97,94 @@
   letter-spacing: 2px;
 }
 
-/* ESTILOS DE TEXTO (Rojo y Verde) */
-.titulo-rojo {
-  color: #d32f2f; /* Rojo intenso */
-  font-size: 1rem;
-  font-weight: 800;
-  margin-bottom: 0.8rem;
+.titulo-rojo { color: #d32f2f; font-weight: 800; margin-bottom: 1rem; }
+.titulo-verde { color: #2e7d32; font-weight: 800; margin-bottom: 1rem; }
+
+.lista-detalles { list-style: none; padding: 0; margin: 0; }
+.separador { border: 0; height: 1px; background: #eee; margin: 1.5rem 0; }
+
+/* =========================================
+   ESTILOS DEL CARRITO Y MODAL (LO NUEVO)
+   ========================================= */
+/* Items de la lista con botón de añadir */
+.item-comprable {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem; color: #555;
+}
+.item-comprable span { flex: 1; }
+
+/* Botón "+ Añadir" pequeño */
+.btn-add {
+  background-color: #f0f4ff; color: #2a4d8f;
+  border: 1px solid #c8d8fb; border-radius: 8px;
+  padding: 6px 12px; font-size: 0.8rem; font-weight: bold;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.btn-add:hover { background-color: #2a4d8f; color: white; }
+
+/* CARRITO FLOTANTE */
+.carrito-flotante {
+  position: fixed; bottom: 30px; right: 30px;
+  background-color: #2a4d8f; color: white;
+  font-size: 2rem; width: 70px; height: 70px;
+  border-radius: 50%; display: flex;
+  justify-content: center; align-items: center;
+  box-shadow: 0 10px 25px rgba(42, 77, 143, 0.4);
+  cursor: pointer; z-index: 1000; transition: transform 0.3s;
+}
+.carrito-flotante:hover { transform: scale(1.1) rotate(10deg); }
+.badge {
+  position: absolute; top: -5px; right: -5px;
+  background-color: #ff4d4f; color: white;
+  font-size: 0.9rem; font-weight: bold;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  border: 3px solid white;
 }
 
-.titulo-verde {
-  color: #2e7d32; /* Verde intenso */
-  font-size: 1rem;
-  font-weight: 800;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+/* VENTANA MODAL */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px);
+  display: flex; justify-content: center; align-items: center; z-index: 2000;
 }
-
-/* LISTAS */
-.lista-detalles {
-  list-style: none; /* Quitamos los puntos por defecto */
-  padding: 0;
-  margin-bottom: 1rem;
+.modal-content {
+  background: white; padding: 2.5rem; border-radius: 25px;
+  width: 90%; max-width: 500px; position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: left;
 }
-
-.lista-detalles li {
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 0.8rem;
-  padding-left: 15px;
-  position: relative;
-  line-height: 1.4;
+.btn-cerrar {
+  position: absolute; top: 20px; right: 20px;
+  background: none; border: none; font-size: 1.5rem;
+  cursor: pointer; color: #999; transition: color 0.2s;
 }
+.btn-cerrar:hover { color: #ff4d4f; }
+.modal-titulo { color: #2a4d8f; margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center; }
+.lista-carrito { list-style: none; padding: 0; max-height: 300px; overflow-y: auto; margin-bottom: 1.5rem; }
+.lista-carrito li { background: #f9f9f9; padding: 12px; border-radius: 12px; margin-bottom: 10px; font-size: 0.95rem; border-left: 4px solid #2a4d8f; }
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+.input-group input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-family: 'Poppins', sans-serif; }
+.input-group input:focus { border-color: #2a4d8f; outline: none; }
+.btn-accion { width: 100%; padding: 15px; background-color: #2a4d8f; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 10px; transition: background 0.2s; }
+.btn-accion:hover:not(:disabled) { background-color: #1e3a6e; }
+.btn-accion:disabled { background-color: #ccc; cursor: not-allowed; }
+.exito-compra { text-align: center; }
+.icono-check { font-size: 5rem; margin-bottom: 1rem; }
+.exito-compra h2 { color: #52c41a; margin-bottom: 1rem;}
 
-/* Puntos personalizados (Guiones pequeños) */
-.lista-detalles li::before {
-  content: "•";
-  color: #aaa;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-.separador {
-  border: 0;
-  height: 1px;
-  background: #eee;
-  margin: 1.5rem 0;
-}
-
-/* ANIMACIONES */
+/* ANIMACIONES DE ENTRADA */
 .fade-in-down { animation: fadeInDown 0.8s ease-out; }
 .fade-in-up { animation: fadeInUp 0.8s ease-out backwards; }
-
-/* Cascada de aparición (una tras otra) */
 .card-producto:nth-child(1) { animation-delay: 0.1s; }
 .card-producto:nth-child(2) { animation-delay: 0.2s; }
 .card-producto:nth-child(3) { animation-delay: 0.3s; }
 .card-producto:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }

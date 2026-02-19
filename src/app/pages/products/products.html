@@ -1,15 +1,12 @@
 <div class="products-container">
-  
   <h1 class="section-title fade-in-down">Productos 🗿</h1>
 
   <div class="grid-productos">
     @for (celu of productos; track celu.marca) {
-      
       <div class="card-producto fade-in-up">
         
         <div class="card-header">
-          <img [src]="celu.imagen" alt="{{celu.marca}}" class="card-img" 
-               onerror="this.src='logo1.jpg'"> 
+          <img [src]="celu.imagen" alt="{{celu.marca}}" class="card-img" onerror="this.src='logo1.jpg'"> 
         </div>
         
         <div class="card-body">
@@ -19,7 +16,10 @@
             <h3 class="titulo-rojo">Gama Alta 🚨</h3>
             <ul class="lista-detalles">
               @for (item of celu.gamaAlta; track item) {
-                <li>{{ item }}</li>
+                <li class="item-comprable">
+                  <span>{{ item }}</span>
+                  <button class="btn-add" (click)="agregarAlCarrito(item, celu.marca)">+ Añadir</button>
+                </li>
               }
             </ul>
           </div>
@@ -30,15 +30,72 @@
             <h3 class="titulo-verde">Calidad Precio / Media 💸</h3>
             <ul class="lista-detalles">
               @for (item of celu.calidadPrecio; track item) {
-                <li>{{ item }}</li>
+                <li class="item-comprable">
+                  <span>{{ item }}</span>
+                  <button class="btn-add" (click)="agregarAlCarrito(item, celu.marca)">+ Añadir</button>
+                </li>
               }
             </ul>
           </div>
-          
         </div>
       </div>
-
     }
   </div>
 
+  <div class="carrito-flotante" (click)="abrirCarrito()">
+    🛒 <span class="badge">{{carrito.length}}</span>
+  </div>
+
+  @if (mostrarModal) {
+    <div class="modal-overlay">
+      <div class="modal-content fade-in-up">
+        
+        <button class="btn-cerrar" (click)="cerrarModal()">✖</button>
+
+        @if (pasoCheckout === 1) {
+          <h2 class="modal-titulo">Tu Carrito Insano 🛒</h2>
+          <ul class="lista-carrito">
+            @for (prod of carrito; track $index) {
+              <li><strong>{{prod.marca}}:</strong> {{prod.producto}}</li>
+            }
+          </ul>
+          <button class="btn-accion" (click)="irAFormulario()">Proceder al Pago 💳</button>
+        }
+
+        @if (pasoCheckout === 2) {
+          <h2 class="modal-titulo">Datos de Envío 📦</h2>
+          <form #envioForm="ngForm" (ngSubmit)="finalizarCompra()" class="form-envio">
+            
+            <div class="input-group">
+              <label>Nombre Completo</label>
+              <input type="text" name="nombre" [(ngModel)]="datosEnvio.nombre" required>
+            </div>
+            
+            <div class="input-group">
+              <label>Dirección Exacta</label>
+              <input type="text" name="direccion" [(ngModel)]="datosEnvio.direccion" required placeholder="Ej: Calle 123 #45-67">
+            </div>
+
+            <div class="input-group">
+              <label>Teléfono de Contacto</label>
+              <input type="tel" name="telefono" [(ngModel)]="datosEnvio.telefono" required>
+            </div>
+
+            <button type="submit" class="btn-accion" [disabled]="envioForm.invalid">
+              Confirmar y Descargar Orden 🚀
+            </button>
+          </form>
+        }
+
+        @if (pasoCheckout === 3) {
+          <div class="exito-compra fade-in-up">
+            <div class="icono-check">✅</div>
+            <h2>¡Pedido enviado!</h2>
+            <button class="btn-accion" (click)="cerrarModal()">Listo</button>
+          </div>
+        }
+
+      </div>
+    </div>
+  }
 </div>
