@@ -102,3 +102,10 @@
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@media (max-width: 768px) {
+  .titulo-seccion { font-size: 2.2rem; }
+  .tarjeta-nosotros { padding: 2rem 1.5rem; width: 95%; }
+  .subtitulo { font-size: 1.5rem; }
+  .descripcion { font-size: 1rem; }
+  .footer-tarjeta { flex-direction: column; gap: 15px; text-align: center; }
+}

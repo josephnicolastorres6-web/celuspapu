@@ -31,3 +31,26 @@
   font-size: 1.2rem;
   line-height: 1.6;
 }
+/* =========================================
+   ADAPTACIÓN PARA CELULARES (RESPONSIVE)
+   ========================================= */
+@media (max-width: 768px) {
+  .home-container {
+    padding-top: 20px;
+  }
+
+  .titulo-papu {
+    font-size: 2.5rem; /* Título más pequeño para que quepa bien */
+    margin-bottom: 20px;
+  }
+
+  .moai-img {
+    width: 150px; /* Moai un poco más pequeño */
+    height: 150px;
+  }
+
+  .texto-bienvenida {
+    font-size: 1rem;
+    padding: 0 15px; /* Evita que el texto toque los bordes del celular */
+  }
+}

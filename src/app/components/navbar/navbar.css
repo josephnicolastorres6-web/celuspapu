@@ -73,3 +73,24 @@
 .logo-container:hover .logo {
   transform: scale(1.05) rotate(-5deg); /* Crece un poquito y se inclina */
 }
+/* =========================================
+   ADAPTACIÓN PARA CELULARES (RESPONSIVE)
+   ========================================= */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Pone el logo arriba y botones abajo */
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap; /* Si no caben, bajan a la siguiente línea */
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    padding: 8px 15px;
+    font-size: 0.85rem; /* Letra un poco más pequeña */
+  }
+}

@@ -242,3 +242,9 @@ select.ng-valid.ng-touched {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@media (max-width: 768px) {
+  .section-title { font-size: 2.2rem; }
+  .content-wrapper { gap: 2rem; }
+  .form-section { padding: 1.5rem; }
+  .icono-exito { font-size: 3rem; }
+}
