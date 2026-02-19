@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* 1. Importar la fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+/* 2. Variables de tus colores exactos */
+:root {
+  --azul-papu: #2a4d8f;  /* El azul de tu barra */
+  --blanco: #ffffff;
+  --gris-texto: #333333;
+}
+
+/* 3. Aplicar la fuente a TODO el proyecto */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif !important; /* !important fuerza el cambio */
+  background-color: var(--blanco);
+  color: var(--gris-texto);
+  height: 100%;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}

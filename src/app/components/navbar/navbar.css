@@ -1,0 +1,75 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Logo a la izquierda, botones a la derecha */
+  align-items: center;
+  padding: 15px 40px; /* Más espacio para que respire */
+  background-color: #2a4d8f; /* Tu azul exacto */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-name {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700; /* Letra gorda */
+  text-transform: capitalize;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+/* ESTILO DE LOS BOTONES (Igual a tu imagen) */
+.nav-btn {
+  text-decoration: none;
+  background-color: white; /* Fondo blanco */
+  color: #2a4d8f; /* Letra azul */
+  padding: 10px 25px; /* Tamaño de la pastilla */
+  border-radius: 50px; /* Bordes totalmente redondos */
+  font-weight: 700; /* Letra negrita */
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+}
+
+/* Efecto al pasar el mouse (Movimiento sutil) */
+.nav-btn:hover {
+  transform: translateY(-3px); /* Sube un poquito */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Botón activo (donde estás parado) */
+.nav-btn.active {
+  background-color: #e0e0e0; /* Un gris muy clarito */
+  transform: scale(1.05);
+}
+
+/* =========================
+   AJUSTE DEL TAMAÑO DEL LOGO
+   ========================= */
+
+.logo {
+  height: 50px; /* Fija la altura para que quepa en la barra */
+  width: auto;  /* El ancho se ajusta solo para que no se vea estirada */
+  object-fit: contain; /* Asegura que se vea la imagen completa */
+  
+  /* Opcional: Un pequeño efecto suave si el mouse pasa por encima */
+  transition: transform 0.3s ease;
+}
+
+/* Si quieres que se mueva un poquito al pasar el mouse */
+.logo-container:hover .logo {
+  transform: scale(1.05) rotate(-5deg); /* Crece un poquito y se inclina */
+}

@@ -1,0 +1,33 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ESTO CENTRA TODO HORIZONTALMENTE */
+  justify-content: center;
+  text-align: center; /* Asegura que el texto esté centrado */
+  padding-top: 50px;
+  min-height: 80vh;
+}
+
+.titulo-papu {
+  font-size: 4rem; /* Título gigante */
+  font-weight: 800; /* Muy negrita */
+  color: #333;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+}
+
+/* Asegurar que la imagen no se rompa si no carga */
+.moai-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ddd; /* Fondo gris por si la imagen falla */
+  margin-bottom: 30px;
+}
+
+.texto-bienvenida {
+  max-width: 700px; /* Que no sea muy ancho */
+  font-size: 1.2rem;
+  line-height: 1.6;
+}

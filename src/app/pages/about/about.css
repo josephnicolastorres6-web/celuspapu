@@ -1,0 +1,104 @@
+/* Contenedor General */
+.about-container {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo */
+  text-align: center;
+  min-height: 80vh;
+}
+
+.titulo-seccion {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 2.5rem;
+  letter-spacing: -1px;
+}
+
+/* LA TARJETA AZUL (Estilo Insano) */
+.tarjeta-nosotros {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); /* Azul oscuro degradado */
+  color: white; /* Texto blanco */
+  padding: 3rem;
+  border-radius: 30px; /* Bordes muy redondos */
+  max-width: 800px; /* Ancho máximo */
+  width: 90%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3); /* Sombra fuerte para profundidad */
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1); /* Borde sutil brillante */
+  
+  /* Transición para el movimiento */
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* EFECTO HOVER (Versatilidad: La tarjeta "respira" cuando pasas el mouse) */
+.tarjeta-nosotros:hover {
+  transform: translateY(-10px) scale(1.02); /* Se levanta y crece un poquito */
+  box-shadow: 0 30px 60px rgba(30, 58, 138, 0.5); /* La sombra azul brilla más */
+}
+
+/* Estilos del Texto */
+.subtitulo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #60a5fa; /* Azul clarito para resaltar */
+  font-weight: 700;
+}
+
+.texto-destacado {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-style: italic;
+  opacity: 0.9;
+  border-left: 4px solid #60a5fa; /* Línea azul a la izquierda */
+  padding-left: 15px;
+  display: inline-block;
+}
+
+.descripcion {
+  line-height: 1.8; /* Espacio entre líneas para leer fácil */
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  color: #e5e7eb; /* Blanco hueso */
+}
+
+/* Footer de la tarjeta */
+.footer-tarjeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.2); /* Línea divisoria */
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.mini-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+}
+
+/* ANIMACIONES (Para que no aparezca de golpe) */
+.fade-in-down {
+  animation: bajar 1s ease-out forwards;
+}
+
+.fade-in-up {
+  animation: subir 1s ease-out forwards;
+  opacity: 0; /* Empieza invisible */
+  animation-delay: 0.3s; /* Espera un poquito */
+}
+
+@keyframes bajar {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subir {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}

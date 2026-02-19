@@ -1,0 +1,150 @@
+.products-container {
+  padding: 3rem 1rem;
+  max-width: 1300px; /* Un poco más ancho para que quepan bien */
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+/* GRID: 4 columnas en pantallas grandes, se adapta en pequeñas */
+.grid-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* TARJETA */
+.card-producto {
+  background: white;
+  border-radius: 25px; /* Bordes bien redondos */
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08); /* Sombra elegante */
+  transition: all 0.4s ease; /* Para el movimiento suave */
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* HOVER: El efecto de movimiento que pediste */
+.card-producto:hover {
+  transform: translateY(-15px); /* Flota hacia arriba */
+  box-shadow: 0 25px 50px rgba(42, 77, 143, 0.25); /* Sombra azul al flotar */
+}
+
+/* IMAGEN SUPERIOR */
+.card-header {
+  background: radial-gradient(circle, #f0f4ff 0%, #eef2ff 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.card-img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.card-producto:hover .card-img {
+  transform: scale(1.1) rotate(3deg); /* Movimiento divertido al pasar el mouse */
+}
+
+/* CUERPO DE LA TARJETA */
+.card-body {
+  padding: 1.5rem;
+  text-align: left; /* Alineado a la izquierda como en tu foto */
+}
+
+.marca {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ESTILOS DE TEXTO (Rojo y Verde) */
+.titulo-rojo {
+  color: #d32f2f; /* Rojo intenso */
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.titulo-verde {
+  color: #2e7d32; /* Verde intenso */
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* LISTAS */
+.lista-detalles {
+  list-style: none; /* Quitamos los puntos por defecto */
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.lista-detalles li {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.4;
+}
+
+/* Puntos personalizados (Guiones pequeños) */
+.lista-detalles li::before {
+  content: "•";
+  color: #aaa;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.separador {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 1.5rem 0;
+}
+
+/* ANIMACIONES */
+.fade-in-down { animation: fadeInDown 0.8s ease-out; }
+.fade-in-up { animation: fadeInUp 0.8s ease-out backwards; }
+
+/* Cascada de aparición (una tras otra) */
+.card-producto:nth-child(1) { animation-delay: 0.1s; }
+.card-producto:nth-child(2) { animation-delay: 0.2s; }
+.card-producto:nth-child(3) { animation-delay: 0.3s; }
+.card-producto:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
