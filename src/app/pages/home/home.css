@@ -51,6 +51,6 @@
 
   .texto-bienvenida {
     font-size: 1rem;
-    padding: 0 15px; /* Evita que el texto toque los bordes del celular */
+    padding: 0 15px; 
   }
 }
