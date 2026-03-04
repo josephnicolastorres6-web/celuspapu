@@ -1,0 +1,69 @@
+<div class="gestor-container">
+  
+  <header class="encabezado-gestor">
+    <img src="logo1.jpg" alt="Celus Papu Logo" class="logo-encabezado">
+    <div>
+      <h1>COMUNIDAD CELUS PAPU</h1>
+      <p>Reseñas y opiniones de nuestros clientes</p>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+    
+    <section class="panel-formulario">
+      <h2 id="textoCondicional">Deja tu reseña, Papu 🗿</h2>
+      
+      <div class="fila-inputs">
+        <input type="text" [(ngModel)]="nuevoNombre" placeholder="Tu nombre o apodo..." class="input-gestor">
+        <input type="text" [(ngModel)]="nuevoModelo" placeholder="¿Qué celular compraste?" class="input-gestor">
+      </div>
+      
+      <div class="caja-input">
+        <select [(ngModel)]="nuevaCalificacion" class="input-gestor">
+          <option value="5">⭐⭐⭐⭐⭐ (5/5 - Excelente, Papu)</option>
+          <option value="4">⭐⭐⭐⭐ (4/5 - Muy Bueno)</option>
+          <option value="3">⭐⭐⭐ (3/5 - Normalito)</option>
+          <option value="2">⭐⭐ (2/5 - Regular)</option>
+          <option value="1">⭐ (1/5 - Paila)</option>
+        </select>
+      </div>
+
+      <div class="caja-input">
+        <textarea [(ngModel)]="nuevoTexto" placeholder="Describe tu experiencia con el equipo y el envío..." class="input-gestor area-texto"></textarea>
+      </div>
+      
+      <button class="btn-gestor" (click)="publicarComentario()">
+        Publicar 🚀
+      </button>
+    </section>
+
+    <section class="lista-seccion">
+      <ul id="usuarios">
+        @for (resena of listaComentarios; track $index) {
+          <li class="item-usuario">
+            <div class="tarjeta-resena" (click)="toggleComentario($index)">
+              <img src="avatar3.png" alt="Avatar" class="avatar-resena" />
+              
+              <div class="info-resena">
+                <span class="nombre-usuario">
+                  {{ resena.nombre }} 
+                  <span class="etiqueta-modelo">{{ resena.modelo }}</span>
+                </span>
+                
+                <span class="estrellas">{{ '⭐'.repeat(resena.estrellas) }}</span>
+                
+                <div class="desplegable" [class.abierto]="comentarioAbierto === $index">
+                  <p class="texto-opinion">"{{ resena.texto }}"</p>
+                  <small class="fecha">{{ resena.fecha }}</small>
+                </div>
+
+                <span class="flecha-indicador" [class.rotada]="comentarioAbierto === $index">▼</span>
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+    </section>
+
+  </main>
+</div>
